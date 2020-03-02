@@ -1,35 +1,7 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      GPS Tracking
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content padding>
+  <h3>Ionic GoogleMaps Starter</h3>
 
-<ion-content class="ion-padding">
-
-
-  <ion-button expand="full" icon-left (click)="startTracking()" *ngIf="!isTracking">
-    <ion-icon name="locate"></ion-icon>
-    Start Run
-  </ion-button>
-  <ion-button expand="full" color="danger" icon-left (click)="stopTracking()" *ngIf="isTracking">
-    <ion-icon name="hand"></ion-icon>
-    Finish Run
-  </ion-button>
-
-  <div id="map" #map></div>
-
-  <ion-list>
-    <ion-list-header>Previous Tracks</ion-list-header>
-    <ion-item *ngFor="let route of previousTracks">
-      {{ route.finished | date }}, {{ route.path.length }} Waypoints
-      <ion-button fill="clear" item-end (click)="showHistoryRoute(route.path)">View Route</ion-button>
-    </ion-item>
-  </ion-list>
-
-  <ion-item>
-    <ion-button fill="clear" item-end (click)="clearTracks()">Clear Routes</ion-button>
-  </ion-item>
-
+  <div id="map_canvas">
+    <button ion-button (click)="loadMap()">Start demo</button>
+  </div>
 </ion-content>
