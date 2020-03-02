@@ -1,14 +1,35 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Ionic Blank
+      GPS Tracking
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content class="ion-padding">
+
+
+  <ion-button expand="full" icon-left (click)="startTracking()" *ngIf="!isTracking">
+    <ion-icon name="locate"></ion-icon>
+    Start Run
+  </ion-button>
+  <ion-button expand="full" color="danger" icon-left (click)="stopTracking()" *ngIf="isTracking">
+    <ion-icon name="hand"></ion-icon>
+    Finish Run
+  </ion-button>
+
+  <div id="map" #map></div>
+
+  <ion-list>
+    <ion-list-header>Previous Tracks</ion-list-header>
+    <ion-item *ngFor="let route of previousTracks">
+      {{ route.finished | date }}, {{ route.path.length }} Waypoints
+      <ion-button fill="clear" item-end (click)="showHistoryRoute(route.path)">View Route</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-button fill="clear" item-end (click)="clearTracks()">Clear Routes</ion-button>
+  </ion-item>
+
 </ion-content>
